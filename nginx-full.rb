@@ -122,21 +122,21 @@ class NginxFull < Formula
       luajit_path = `brew --prefix luajit`.chomp
       ENV['LUAJIT_LIB'] = "#{luajit_path}/lib"
       ENV['LUAJIT_INC'] = "#{luajit_path}/include/luajit-2.0"
-      args << "--add-module=/usr/local/share/ngx-devel-kit"
-      args << "--add-module=/usr/local/share/lua-nginx-module"
+      args << "--add-module=#{share}/ngx-devel-kit"
+      args << "--add-module=#{share}/lua-nginx-module"
     end
 
     # Echo module
-    args << "--add-module=/usr/local/share/echo-nginx-module" if build.include? 'with-echo-module'
+    args << "--add-module=#{share}/echo-nginx-module" if build.include? 'with-echo-module'
 
     # Set-Misc module
-    args << "--add-module=/usr/local/share/set-misc-nginx-module" if build.include? 'with-set-misc-module'
+    args << "--add-module=#{share}/set-misc-nginx-module" if build.include? 'with-set-misc-module'
 
     # Redis2 module
-    args << "--add-module=/usr/local/share/redis2-nginx-module" if build.include? 'with-redis2-module'
+    args << "--add-module=#{share}/redis2-nginx-module" if build.include? 'with-redis2-module'
 
     # Auth Digest Module
-    args << "--add-module=/usr/local/share/auth-digest-nginx-module" if build.include? "with-auth-digest"
+    args << "--add-module=#{share}/auth-digest-nginx-module" if build.include? "with-auth-digest"
 
     if build.head?
       system "./auto/configure", *args
